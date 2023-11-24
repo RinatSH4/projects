@@ -11,7 +11,7 @@ public class Horoscope {
     String parseURL(String url) {
         String atr = "p";
         String text;
-        Document doc = null;
+        Document doc;
         try {
             //Получаем документ нужной нам страницы
             doc = Jsoup.connect(url).maxBodySize(0).get();
