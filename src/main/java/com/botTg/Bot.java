@@ -15,7 +15,7 @@ import java.util.Date;
 public class Bot extends TelegramLongPollingBot {
 
     private final String BOT_NAME = "RinatSHTest_bot";
-    private final String BOT_TOKEN = "6363834152:AAHIdwh899cNKQC1h9UJzprOva8v3UhiP0M";
+    private final String BOT_TOKEN = "you_token";
 
     private Horoscope horoscope;
     private ReplyKeyboardMarkup replyKeyboardMarkup;
