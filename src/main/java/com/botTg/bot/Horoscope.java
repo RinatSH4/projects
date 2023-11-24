@@ -1,4 +1,4 @@
-package com.botTg;
+package com.botTg.bot;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
