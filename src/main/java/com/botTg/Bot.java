@@ -1,5 +1,8 @@
 package com.botTg;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -9,13 +12,14 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Bot extends TelegramLongPollingBot {
 
     private final String BOT_NAME = "RinatSHTest_bot";
-    private final String BOT_TOKEN = "you_token";
+    private final String BOT_TOKEN = "6363834152:AAHIdwh899cNKQC1h9UJzprOva8v3UhiP0M";
 
     private Horoscope horoscope;
     private ReplyKeyboardMarkup replyKeyboardMarkup;
@@ -48,7 +52,7 @@ public class Bot extends TelegramLongPollingBot {
 
             //Получаем текст сообщения пользователя, отправляем
             // в написанный нами обработчик
-            String responce = parseMessage(inMess.getText());
+            String responce = parseMessage(inMess.getText()) + "\n\n" + getTemperature();
             System.out.println("Текст пользователя: " + inMess.getText());
 
             //Создаем объект класса SendMessage
@@ -137,5 +141,20 @@ public class Bot extends TelegramLongPollingBot {
 
         //добавляем лист с одним рядом кнопок в главный объект
         replyKeyboardMarkup.setKeyboard(keyboardRows);
+    }
+
+    static String getTemperature() {
+        try {
+            String url = "https://www.gismeteo.ru/weather-engels-5034/?ysclid=lptjhk4si3325579449";
+            Document doc = Jsoup.connect(url).get();
+            Elements element = doc.getElementsByClass("weather-value");
+            Elements element1 = doc.getElementsByClass("measure");
+            String e1 = element.text().substring(0, element.text().indexOf(' '));
+            String e2 = element1.text().substring(0, element.text().indexOf(' '));;
+            String temperature = "\nПогода в Энгельсе: " + e1 + "\nпо ощущению: " + e2;
+            return temperature;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
