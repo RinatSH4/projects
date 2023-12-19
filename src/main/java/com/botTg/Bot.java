@@ -169,6 +169,8 @@ public class Bot extends TelegramLongPollingBot {
         SendPhoto send = new SendPhoto();
         send.setChatId(chatId);
         send.setPhoto(new InputFile("https://u.9111s.ru/uploads/202103/25/e2f07c9a3fa64f1c96c0b79716f1e4db.jpg"));
+        //send.setPhoto(new InputFile("http://img-fotki.yandex.ru/get/5214/68701203.5d/0_7a6ac_3ce5081e_orig.jpg"));
+        //send.setPhoto(new InputFile("/src/main/images/photo.jpeg"));
         send.setCaption("Это гороскоп на каждый день, " +
                 "жми на свой знак и узнавай что тебя ждет сегодня! \nСегодня: " + date +
                 "\n\n" + getTemperature());
@@ -178,4 +180,5 @@ public class Bot extends TelegramLongPollingBot {
             System.out.println(e);
         }
     }
+
 }
